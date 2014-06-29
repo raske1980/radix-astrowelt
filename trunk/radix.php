@@ -277,6 +277,65 @@ $drawAspectsString .= drawAspect($pluto_x, $pluto_y, $merkur_x, $merkur_y, $plut
 $drawAspectsString .= drawAspect($pluto_x, $pluto_y, $sonne_x, $sonne_y, $pluto_arc, $sonne_arc);
 $drawAspectsString .= drawAspect($pluto_x, $pluto_y, $mond_x, $mond_y, $pluto_arc, $mond_arc);
 
+//mondknoten
+$mondknoten_grad = $planets['mondknoten_grad'];
+$mondknoten_zodiac = $planets['mondknoten_zodiac'];
+$mondknoten_arcminutes = $planets['mondknoten_arcminutes'];
+$mondknoten_arc = $radix->get_arcToDraw($mondknoten_grad, $mondknoten_zodiac, $mondknoten_arcminutes);
+$mondknotenradius = getRadius($mondknoten_arc, $planet_info);
+$mondknoten_coordinates = $radix->get_radix_coordinates($mondknoten_arc, $mondknotenradius);
+$mondknoten_x = $mondknoten_coordinates['x'];
+$mondknoten_y = ($mondknoten_coordinates['y'] * -1);
+$mondknoten_descr = $radix->get_radix_coordinates($mondknoten_arc, $mondknotenradius - 3*5);
+$mondknoten_descr_x = $mondknoten_descr['x'];
+$mondknoten_descr_y = ($mondknoten_descr['y'] * -1);
+$mondknotenInfo = array();
+$mondknotenInfo["arc"] = $mondknoten_arc;
+$mondknotenInfo["planet"] = "mondknoten";
+$mondknotenInfo["radius"] = $mondknotenradius;
+$planet_info[] = $mondknotenInfo;
+
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y,$neptun_x, $neptun_y, $mondknoten_arc,$neptun_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $pluto_x, $pluto_y, $mondknoten_arc,$neptun_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $uranus_x, $uranus_y, $mondknoten_arc, $uranus_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $jupiter_x, $jupiter_y, $mondknoten_arc,$jupiter_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $saturn_x, $saturn_y, $mondknoten_arc, $saturn_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $mars_x, $mars_y * -1, $mondknoten_arc, $mars_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $venus_x,$venus_y, $mondknoten_arc, $venus_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $merkur_x, $merkur_y, $mondknoten_arc, $merkur_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $sonne_x, $sonne_y, $mondknoten_arc, $sonne_arc);
+$drawAspectsString .= drawAspect($mondknoten_x, $mondknoten_y, $mond_x, $mond_y, $mondknoten_arc, $mond_arc);
+
+//Chiron
+$chiron_grad = $planets['chiron_grad'];
+$chiron_zodiac = $planets['chiron_zodiac'];
+$chiron_arcminutes = $planets['chiron_arcminutes'];
+$chiron_arc = $radix->get_arcToDraw($chiron_grad, $chiron_zodiac, $chiron_arcminutes);
+$chironradius = getRadius($chiron_arc, $planet_info);
+$chiron_coordinates = $radix->get_radix_coordinates($chiron_arc, $chironradius);
+$chiron_x = $chiron_coordinates['x'];
+$chiron_y = ($chiron_coordinates['y'] * -1);
+$chiron_descr = $radix->get_radix_coordinates($chiron_arc, $chironradius - 3*5);
+$chiron_descr_x = $chiron_descr['x'];
+$chiron_descr_y = ($chiron_descr['y'] * -1);
+$chironInfo = array();
+$chironInfo["arc"] = $chiron_arc;
+$chironInfo["planet"] = "mondknoten";
+$chironInfo["radius"] = $chironradius;
+$planet_info[] = $chironInfo;
+
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y,$mondknoten_x, $mondknoten_y, $chiron_arc,$mondknoten_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y,$neptun_x, $neptun_y, $chiron_arc,$neptun_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $pluto_x, $pluto_y, $chiron_arc,$neptun_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $uranus_x, $uranus_y, $chiron_arc, $uranus_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $jupiter_x, $jupiter_y, $chiron_arc,$jupiter_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $saturn_x, $saturn_y, $chiron_arc, $saturn_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $mars_x, $mars_y * -1, $chiron_arc, $mars_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $venus_x,$venus_y, $chiron_arc, $venus_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $merkur_x, $merkur_y, $chiron_arc, $merkur_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $sonne_x, $sonne_y, $chiron_arc, $sonne_arc);
+$drawAspectsString .= drawAspect($chiron_x, $chiron_y, $mond_x, $mond_y, $chiron_arc, $mond_arc);
+
 // Ascendant
 $ascendant_grad = $planets['ascendant_grad'];
 $ascendant_zodiac = $planets['ascendant_zodiac'];
@@ -329,11 +388,11 @@ function getRadius($planetArc, $planetArray){
     }
     
     if(count($nearArray) == 0){
-        return 280;
+        return 250;
     }
     else{
         if(count($nearArray) == 1){
-            return $nearArray[0]["radius"] - 32;
+            return $nearArray[0]["radius"] - 28;
         }
         else {
             $lowestRadius = $nearArray[0]["radius"];
@@ -344,14 +403,14 @@ function getRadius($planetArc, $planetArray){
                     }
                 }
             }
-            return $lowestRadius - 32;
+            return $lowestRadius - 28;
         }
     }        
 }
 
 function isNear($planetArc, $currentArc){
     $difference = abs($planetArc - $currentArc);
-    if($difference <= 18){
+    if($difference <= 10){
         return TRUE;
     }
     else{
@@ -561,63 +620,92 @@ function get_y($arc, $radius) {
 	 return $y;
 }
 
+function getCorrectionIndex($coordinate_x, $coordinate_y){
+    if(($coordinate_x < 0 && $coordinate_y > 0) ||
+            ($coordinate_x > 0 && $coordinate_y < 0)){
+        return 2.5;
+    } 
+    else if(($coordinate_x < 0 && $coordinate_y < 0)){
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}
+
 
 //dotted line
 $linestyle = "style=\"stroke:#959595; stroke-width:1\" stroke-dasharray=\"1,2\"";
 $linestyle2 = "style=\"stroke:red; stroke-width:1\" stroke-dasharray=\"1,2\"";
 
+$correction_x = 0;
+$correction_y = 0;
+
+$imagewidth = 30;
+$imageheight = 30;
+
+$imagex=385;
+$imagey=458;
+
 //sun
 $draw_sun_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". $sonne_arc .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_sun_symbol = "<g transform=\"translate(" .  $sonne_x . "," . $sonne_y  . ") \">\n";
-$draw_sun_symbol .= "<circle cx=\"400\" cy=\"470\" r=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"yellow\" /> \n";
-$draw_sun_symbol .= "<circle cx=\"400\" cy=\"470\" r=\"1\" stroke=\"black\" stroke-width=\"1\" fill=\"black\" /> \n";
-$draw_sun_symbol .= "</g>\n";
-$draw_sun_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $sonne_descr_x . ", " . $sonne_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Sonne</text> \n";
+$correctionPar = getCorrectionIndex($sonne_x, $sonne_y);
+$draw_sun_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" . strval(floatval($sonne_x)- $correction_x*$correctionPar)  . ", " . strval(floatval($sonne_y) + $correction_y)  . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"sun.svg\" ></image>";
 
 //moon
 $draw_mond_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($mond_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_mond_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $mond_x . "," . $mond_y . ") \" r=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"#cccccc\" /> \n";
-$draw_mond_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $mond_descr_x . ", " . $mond_descr_y . ") rotate (" . ($drehung * - 1) . ", 400, 470)  \">Mond</text> \n";
+$correctionPar = getCorrectionIndex($mond_x, $mond_y);
+$draw_mond_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($mond_x)-$correction_x*$correctionPar) . ", " . strval(floatval($mond_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"moon.svg\" ></image>";
 
 //merkur
 $draw_merkur_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($merkur_arc) .", 400,470)\" ". $linestyle . " /> \n";
-$draw_merkur_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $merkur_x . "," . $merkur_y . ") \" r=\"6\" stroke=\"black\" stroke-width=\"1\" fill=\"#a55500\" /> \n";
-$draw_merkur_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $merkur_descr_x . ", " . $merkur_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Merkur</text> \n";
+$correctionPar = getCorrectionIndex($merkur_x, $merkur_y);
+$draw_merkur_symbol ="<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($merkur_x)-$correction_x*$correctionPar) . ", " . strval(floatval($merkur_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"mercury.svg\" ></image>";
 
 //venus
 $draw_venus_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($venus_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_venus_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $venus_x . "," . $venus_y . ") \" r=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"#fe6637\" /> \n";
-$draw_venus_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $venus_descr_x . ", " . $venus_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Venus</text> \n";
+$correctionPar = getCorrectionIndex($venus_x, $venus_y);
+$draw_venus_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($venus_x)-$correction_x*$correctionPar) . ", " . strval(floatval($venus_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"venus.svg\" ></image>";
 
 //Mars
 $draw_mars_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($mars_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_mars_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $mars_x . "," . ($mars_y * - 1) . ") \" r=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"#fc6d6d\" /> \n";
-$draw_mars_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $mars_descr_x . ", " . ($mars_descr_y * - 1) . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Mars</text> \n";
+$correctionPar = getCorrectionIndex($mars_x, $mars_y);
+$draw_mars_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($mars_x) - 2*$correction_x) . ", " . strval(floatval($mars_y * - 1)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"mars.svg\" ></image>";
 
 //Jupiter
 $draw_jupiter_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($jupiter_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_jupiter_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $jupiter_x . "," . $jupiter_y . ") \" r=\"11\" stroke=\"black\" stroke-width=\"1\" fill=\"#f1821f\" /> \n";
-$draw_jupiter_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $jupiter_descr_x . ", " . $jupiter_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Jupiter</text> \n";
+$correctionPar = getCorrectionIndex($jupiter_x, $jupiter_y);
+$draw_jupiter_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($jupiter_x)-$correction_x*$correctionPar) . ", " . strval(floatval($jupiter_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"jupiter.svg\" ></image>";
 
 //Saturn
 $draw_saturn_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". $saturn_arc .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_saturn_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $saturn_x . "," . $saturn_y . ") \" r=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"#ff9a40\" /> \n";
-$draw_saturn_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $saturn_descr_x . ", " . $saturn_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Saturn</text> \n";
+$correctionPar = getCorrectionIndex($saturn_x, $saturn_y);
+$draw_saturn_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($saturn_x)-$correction_x*$correctionPar) . ", " . strval(floatval($saturn_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"saturn.svg\" ></image>";
 
 //Uranus
 $draw_uranus_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($uranus_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_uranus_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $uranus_x . "," . $uranus_y . ") \" r=\"6\" stroke=\"black\" stroke-width=\"1\" fill=\"#40fff8\" /> \n";
-$draw_uranus_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $uranus_descr_x . ", " . $uranus_descr_y . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \">Uranus</text> \n";
+$correctionPar = getCorrectionIndex($uranus_x, $uranus_y);
+$draw_uranus_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($uranus_x)-$correction_x*$correctionPar ) . ", " . strval(floatval($uranus_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"uranus.svg\" ></image>";
 
 //Neptun
 $draw_neptun_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($neptun_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_neptun_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $neptun_x . "," . $neptun_y . ") \" r=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"#2685fa\" /> \n";
-$draw_neptun_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $neptun_descr_x . ", " . $neptun_descr_y . ") rotate (" . ($drehung * - 1) . ", 400, 470)  \">Neptun</text> \n";
+$correctionPar = getCorrectionIndex($neptun_x, $neptun_y);
+$draw_neptun_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($neptun_x)-$correction_x*$correctionPar) . ", " . strval(floatval($neptun_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"neptune.svg\" ></image>";
 
 //Pluto
 $draw_pluto_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($pluto_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
-$draw_pluto_symbol = "<circle cx=\"400\" cy=\"470\" transform=\"translate(" .  $pluto_x . "," . $pluto_y  . ") \" r=\"5\" stroke=\"black\" stroke-width=\"1\" fill=\"#a6ceff\" /> \n";
-$draw_pluto_symbol .= "<text x=\"400\" y=\"470\" class=\"planet_descr\" transform=\"translate(" .   $pluto_descr_x . ", " . $pluto_descr_y  . ") rotate (" . ($drehung * - 1) . ", 400, 470) \">Pluto</text> \n";
+$correctionPar = getCorrectionIndex($pluto_x, $pluto_y);
+$draw_pluto_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($pluto_x)-$correction_x*$correctionPar) . ", " . strval(floatval($pluto_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"pluto.svg\" ></image>";
+
+//mond knoten
+$draw_mondknoten_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($mondknoten_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
+$correctionPar = getCorrectionIndex($mondknoten_x, $mondknoten_y);
+$draw_mondknoten_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($mondknoten_x)-$correction_x*$correctionPar) . ", " . strval(floatval($mondknoten_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"lunar_node.svg\" ></image>";
+
+//chiron
+$draw_chiron_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($chiron_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
+$correctionPar = getCorrectionIndex($chiron_x, $chiron_y);
+$draw_chiron_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($chiron_x)-$correction_x*$correctionPar) . ", " . strval(floatval($chiron_y)+$correction_y) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"chiron.svg\" ></image>";
 
 $zodiac_symbols = "<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y= \"470\" class=\"\" transform=\"translate(-95.57058115441, -295.58223813131) rotate (-15.8, 400, 470)  \" style=\"font-weight:bold\">Aries</text>";
 $zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-235.57058115441, -200.58223813131) rotate (-43.8, 400, 470)  \" style=\"font-weight:bold\" >Taurus</text> ";
@@ -694,6 +782,8 @@ $zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\
 		<tspan x="40" dy="10">Uranus Winkel: <?php echo $uranus_arc; ?></tspan>
 		<tspan x="40" dy="10">Neptun Winkel: <?php echo $neptun_arc; ?></tspan>
 		<tspan x="40" dy="10">Pluto Winkel: <?php echo $pluto_arc; ?></tspan>
+                <tspan x="40" dy="10">Mond Knoten Winkel: <?php echo $mondknoten_arc; ?></tspan>
+                <tspan x="40" dy="10">Chiron Winkel: <?php echo $chiron_arc; ?></tspan>
 	
 </text>
 
@@ -756,6 +846,12 @@ echo $draw_neptun_symbol;
 
 echo $draw_pluto_line;
 echo $draw_pluto_symbol;
+
+echo $draw_mondknoten_line;
+echo $draw_mondknoten_symbol;
+
+echo $draw_chiron_line;
+echo $draw_chiron_symbol;
 
 echo $drawAspectsString; 
 echo $zodiac_symbols;
