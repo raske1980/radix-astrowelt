@@ -36,7 +36,7 @@ $gmTime = explode(":", $gmArray[3]);
 
 // XML source
 $planets = $radix->get_planets("http://neu.webnagel.de/astro-xml/test/planets.php?birthdate="
-        .$gmArray[1].".".$gmArray[0].".".$gmArray[2]."&long=".$longitude."&lat".$latitude."&ut=".$gmTime[0].":".$gmArray[1]);
+        .$gmArray[1].".".$gmArray[0].".".$gmArray[2]."&long=".$longitude."&lat".$latitude."&ut=".$gmTime[0].":".$gmTime[1]);
 
 
 $drawAspectsString = "";
