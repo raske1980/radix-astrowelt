@@ -2,6 +2,9 @@
 include "astrographics.php";
 include 'GoogleAPI.php';
 
+// Start output buffering
+ob_start();
+
 $content="Content-type: image/svg+xml";
 header($content);
 echo '<?xml version="1.0" ?>';
@@ -1076,3 +1079,11 @@ echo $zodiac_symbols;
 
 
 </svg>
+
+<?php
+
+file_put_contents('test.svg', ob_get_contents());
+// end buffering and displaying page
+ob_end_flush();
+
+?>
