@@ -11,13 +11,14 @@ echo '<?xml version="1.0" ?>';
 
 $datum = date("d.m.Y");
 //$datum = "23.10.2035";
+//$time = date('H:i');
 
 $radix = new Astrographics;
 
 $birthDate = $datum ;
 $latitude = '51.133333';
 $longitude = '10.416667';
-$time = '06:00';
+$time = date('H:i');
 
 $googleInst = new GoogleAPI();
 $timeZone = $googleInst->getTimeZone($longitude, $latitude);
@@ -955,7 +956,7 @@ echo $zodiac_symbols;
 
 
 
-<text x="359" y="350" fill="black" style="font-family:Verdana; font-size:12px"><?php echo "Datenermittlung: " . $birthdate . ", 6:00 Uhr"; ?></text>
+<text x="359" y="350" fill="black" style="font-family:Verdana; font-size:12px"><?php echo "Datenermittlung: " . $birthdate . ", ".$time." Uhr"; ?></text>
 
 <text x="25" y="80" fill="black" transform="rotate(-90 25,80)" style="font-family:Verdana; font-size:12px">Sonne</text>
 <text x="10" y="180" fill="black" style="font-family:Verdana; font-size:12px"><?php echo $sonne_grad_table; ?></text>
@@ -1111,7 +1112,7 @@ echo $zodiac_symbols;
 
 <?php
 
-file_put_contents('daily-radix.svg', ob_get_contents());
+file_put_contents('current-radix.svg', ob_get_contents());
 // end buffering and displaying page
 ob_end_flush();
 
