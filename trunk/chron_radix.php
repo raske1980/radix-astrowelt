@@ -10,7 +10,7 @@ header($content);
 echo '<?xml version="1.0" ?>';
 
 $datum = date("d.m.Y");
-//$datum = "23.02.2145";
+$datum = "23.10.2035";
 
 $radix = new Astrographics;
 
@@ -837,7 +837,7 @@ $zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\
 
 
 <!-- background-->
-<rect x="0" y="0" width="680" height="1050" fill="#ffffff" stroke="black" />
+<rect x="0" y="0" width="680" height="1050" fill="#ffffff" stroke="" />
 
 <!-- title -->
 <!-- <text x="400" y="40" class="title">Radixhoroskop</text>-->
