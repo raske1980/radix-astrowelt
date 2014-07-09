@@ -10,7 +10,7 @@ header($content);
 echo '<?xml version="1.0" ?>';
 
 $datum = date("d.m.Y");
-$datum = "23.10.2035";
+//$datum = "23.10.2035";
 
 $radix = new Astrographics;
 
