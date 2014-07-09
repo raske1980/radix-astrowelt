@@ -1112,6 +1112,7 @@ echo $zodiac_symbols;
 <?php
 
 file_put_contents('daily-radix.svg', ob_get_contents());
+file_put_contents('current-radix.svg', ob_get_contents());
 // end buffering and displaying page
 ob_end_flush();
 
