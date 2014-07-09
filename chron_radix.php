@@ -52,7 +52,7 @@ $sonne_grad = $planets['sonne_grad'];
 $sonne_zodiac = $planets['sonne_zodiac'];
 $sonne_arcminutes = $planets['sonne_arcminutes'];
 $sonne_arc = $radix->get_arcToDraw($sonne_grad, $sonne_zodiac, $sonne_arcminutes);
-$sonne_coordinates = $radix->get_radix_coordinates($sonne_arc, 265);
+$sonne_coordinates = $radix->get_radix_coordinates($sonne_arc, 260);
 $sonne_x = ($sonne_coordinates['x']);
 $sonne_y = ($sonne_coordinates['y'] * -1);
 $sonne_descr = $radix->get_radix_coordinates($sonne_arc, 247);
@@ -706,6 +706,9 @@ $correction_y = 0;
 $imagewidth = 40;
 $imageheight = 40;
 
+$imageSunMondwidth = 33;
+$imageSunMondheight = 33;
+
 $imagex=380;
 $imagey=458;
 
@@ -716,12 +719,12 @@ $imagexMondKnoten = 370;
 //$draw_sun_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". $sonne_arc .", 400,470)\" ". $linestyle2 . " /> \n";
 $draw_sun_line = "<line x1=\"400\" y1=\"190\" x2=\"400\" y2=\"175\" transform=\"rotate(-". $sonne_arc .", 400,470)\" ". $linestyle3 . " /> \n";
 $draw_sun_line .= "<line x1=\"400\" y1=\"310\" x2=\"400\" y2=\"295\" transform=\"rotate(-". $sonne_arc .", 400,470)\" ". $linestyle3 . " /> \n";
-$draw_sun_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" . strval(floatval($sonne_x))  . ", " . strval(floatval($sonne_y))  . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"sun.svg\" ></image>";
+$draw_sun_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" . strval(floatval($sonne_x))  . ", " . strval(floatval($sonne_y))  . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imageSunMondwidth. "\" height=\"" . $imageSunMondheight ."\" xlink:href=\"sun.svg\" ></image>";
 
 //moon
 $draw_mond_line = "<line x1=\"400\" y1=\"190\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($mond_arc) .", 400,470)\" ". $linestyle3 . " /> \n";
 $draw_mond_line .= "<line x1=\"400\" y1=\"310\" x2=\"400\" y2=\"295\" transform=\"rotate(-". ($mond_arc) .", 400,470)\" ". $linestyle3 . " /> \n";
-$draw_mond_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($mond_x)) . ", " . strval(floatval($mond_y)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"moon.svg\" ></image>";
+$draw_mond_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($mond_x)) . ", " . strval(floatval($mond_y)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470)  \" width=\"" .$imageSunMondwidth. "\" height=\"" . $imageSunMondheight ."\" xlink:href=\"moon.svg\" ></image>";
 
 //merkur
 //$draw_merkur_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($merkur_arc) .", 400,470)\" ". $linestyle . " /> \n";
@@ -769,7 +772,7 @@ $draw_neptun_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"tr
 //$draw_pluto_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($pluto_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
 $draw_pluto_line = "<line x1=\"400\" y1=\"190\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($pluto_arc) .", 400,470)\" ". $linestyle3 . " /> \n";
 $draw_pluto_line .= "<line x1=\"400\" y1=\"310\" x2=\"400\" y2=\"295\" transform=\"rotate(-". ($pluto_arc) .", 400,470)\" ". $linestyle3 . " /> \n";
-$draw_pluto_symbol = "<image x=\"".$imagexPluto."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($pluto_x)) . ", " . strval(floatval($pluto_y)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"pluto.svg\" ></image>";
+$draw_pluto_symbol = "<image x=\"".$imagexPluto."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($pluto_x)) . ", " . strval(floatval($pluto_y)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\"  xlink:href=\"pluto.svg\" ></image>";
 
 //mond knoten
 //$draw_mondknoten_line = "<line x1=\"400\" y1=\"470\" x2=\"400\" y2=\"175\" transform=\"rotate(-". ($mondknoten_arc) .", 400,470)\" ". $linestyle2 . " /> \n";
@@ -830,7 +833,7 @@ $zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\
 		font-family:Arial, Helvetica, sans-serif;
 		font-size:9px;
 
-	}
+	}               
 
 	]]>
 </style>
