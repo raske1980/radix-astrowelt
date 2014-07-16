@@ -357,6 +357,10 @@ $draw_ringstart = "";
 // draw 360 degrees scale
 $draw_scale = "<defs> \n";
 $draw_scale.= "<line id=\"degrees\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#aeaeaf; stroke-width:1\" /> \n";
+$draw_scale.= "<line id=\"degrees_green\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#ccffc2; stroke-width:1\" /> \n";
+$draw_scale.= "<line id=\"degrees_red\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#ffb1b1; stroke-width:1\" /> \n";
+$draw_scale.= "<line id=\"degrees_orange\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#ffd086; stroke-width:1\" /> \n";
+$draw_scale.= "<line id=\"degrees_blue\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#adc0ff; stroke-width:1\" /> \n";
 $draw_scale.= "<line id=\"degrees_10\" x1=\"400\" y1=\"470\" x2=\"700\" y2=\"470\" style=\"stroke:#ff0000; stroke-width:1;\" /> \n";
 $draw_scale.= "<line id=\"degrees_zodiac\" x1=\"450\" y1=\"470\" x2=\"730\" y2=\"470\" style=\"stroke:#000000; stroke-width:1\"  /> \n";
 $draw_scale.= "</defs> \n";
@@ -364,9 +368,34 @@ $draw_scale.= "</defs> \n";
 $draw_scale.= "<g> \n";
 for ($i = 0; $i <= 359; $i++) {
 	$arc= $i;
-	$draw_scale .= "<use xlink:href=\"#degrees\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
+        /*if(($i >= 0 && $i < 30) || ($i >= 119 && $i<150) || ($i >= 240 && $i<270)){
+            $draw_scale .= "<use xlink:href=\"#degrees_red\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
+        }
+        else if(($i >= 90 && $i < 120) || ($i >= 210 && $i<240) || ($i >= 330 && $i<360)){
+            $draw_scale .= "<use xlink:href=\"#degrees_green\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
+        }
+        else if(($i >= 60 && $i < 90) || ($i >= 180 && $i<210) || ($i >= 300 && $i<330)){
+            $draw_scale .= "<use xlink:href=\"#degrees_orange\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
+        }
+        else if(($i >= 30 && $i < 60) || ($i >= 150 && $i<180) || ($i >= 270 && $i<300)){
+            $draw_scale .= "<use xlink:href=\"#degrees_blue\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
+        }*/
+ 	$draw_scale .= "<use xlink:href=\"#degrees\" transform=\"rotate(" . $arc .", 400, 470)\" /> \n";
 }
 $draw_scale .= "</g> \n";
+
+$backgroundscale= "<path id='arc1' fill='transparent' stroke='#ffb1b1' stroke-width='30' d='M 715 470 A 315.9 315.9 0 0 1 673 627'/>
+<path id='arc1' fill='transparent' stroke='#adc0ff' stroke-width='30' d='M 673 627 A 315.9 315.9 0 0 1 557 743'/>
+<path id='arc1' fill='transparent' stroke='#ffd086' stroke-width='30' d='M 557 743 A 315.9 315.9 0 0 1 400 785'/>
+<path id='arc1' fill='transparent' stroke='#ccffc2' stroke-width='30' d='M 400 785 A 315.9 315.9 0 0 1 242 743'/>
+<path id='arc1' fill='transparent' stroke='#ffb1b1' stroke-width='30' d='M 242 743 A 315.9 315.9 0 0 1 126 627'/>
+<path id='arc1' fill='transparent' stroke='#adc0ff' stroke-width='30' d='M 126 627 A 315.9 315.9 0 0 1 84 470'/>
+<path id='arc1' fill='transparent' stroke='#ffd086' stroke-width='30' d='M 84 470 A 315.9 315.9 0 0 1 126 312'/>
+<path id='arc1' fill='transparent' stroke='#ccffc2' stroke-width='30' d='M 126 312 A 315.9 315.9 0 0 1 242 196'/>
+<path id='arc2' fill='transparent' stroke='#ffb1b1' stroke-width='30' d='M 242 196 A 315.9 315.9 0 0 1 399 154'/>
+<path id='arc3' fill='transparent' stroke='#adc0ff' stroke-width='30' d='M 399 154 A 315.9 315.9 0 0 1 557 196'/>
+<path id='arc4' fill='transparent' stroke='#ffd086' stroke-width='30' d='M 557 196 A 315.9 315.9 0 0 1 673 312'/>
+<path id='arc5' fill='transparent' stroke='#ccffc2' stroke-width='30' d='M 673 312 A 315.9 315.9 0 0 1 715 469'/>";
 
 $draw_scale_10 = "<g> \n";
 for ($i = 0; $i <= 35; $i++) {
@@ -787,21 +816,33 @@ $draw_chiron_line = "<line x1=\"400\" y1=\"190\" x2=\"400\" y2=\"175\" transform
 $draw_chiron_line .= "<line x1=\"400\" y1=\"310\" x2=\"400\" y2=\"295\" transform=\"rotate(-". ($chiron_arc) .", 400,470)\" ". $linestyle3 . " /> \n";
 $draw_chiron_symbol = "<image x=\"".$imagex."\" y=\"".$imagey."\" transform=\"translate(" .   strval(floatval($chiron_x)) . ", " . strval(floatval($chiron_y)) . ") rotate (" . ($drehung * - 1)  . ", 400, 470) \" width=\"" .$imagewidth. "\" height=\"" . $imageheight ."\" xlink:href=\"chiron.svg\" ></image>";
 
-$zodiac_symbols = "<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y= \"470\" class=\"\" transform=\"translate(-95.57058115441, -295.58223813131) rotate (-15.8, 400, 470)  \" style=\"font-weight:bold\">Aries</text>";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-235.57058115441, -200.58223813131) rotate (-43.8, 400, 470)  \" style=\"font-weight:bold\" >Taurus</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-305.57058115441, -60.58223813131) rotate (-72.8, 400, 470)  \" style=\"font-weight:bold\" >Gemini</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-290.57058115441, 103.58223813131) rotate (-107.8, 400, 470)  \" style=\"font-weight:bold\" >Cancer</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-207.57058115441, 228.58223813131) rotate (-132.8, 400, 470)  \" style=\"font-weight:bold\" >Leo</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-70.57058115441, 300.58223813131) rotate (-165, 400, 470)  \" style=\"font-weight:bold\">Virgo</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(100.57058115441, 293.58223813131) rotate (-195, 400, 470)  \" style=\"font-weight:bold\">Libra</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(238.57058115441, 195.58223813131) rotate (-225, 400, 470)  \" style=\"font-weight:bold\" >Scorpio</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(310.57058115441, 45.58223813131) rotate (-255, 400, 470)  \" style=\"font-weight:bold\">Sagittarius</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(290.57058115441, -114.58223813131) rotate (-284, 400, 470)  \" style=\"font-weight:bold\" >Capricorn</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(190.57058115441, -243.58223813131) rotate (-318, 400, 470)  \" style=\"font-weight:bold\">Aquarius</text> ";
-$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(65.57058115441, -305.58223813131) rotate (-343, 400, 470)  \" style=\"font-weight:bold\">Pisces</text>";
+//$zodiac_symbols = "<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y= \"470\" class=\"\" transform=\"translate(-95.57058115441, -295.58223813131) rotate (-15.8, 400, 470)  \" style=\"font-weight:bold\">Aries</text>";
+$zodiac_symbols = "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-105.57058115441, -305.58223813131) rotate (-15.8, 400, 470)  \" xlink:href=\"sign_1.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-235.57058115441, -200.58223813131) rotate (-43.8, 400, 470)  \" style=\"font-weight:bold\" >Taurus</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-255.57058115441, -200.58223813131) rotate (-43.8, 400, 470)  \" xlink:href=\"sign_26.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-305.57058115441, -60.58223813131) rotate (-72.8, 400, 470)  \" style=\"font-weight:bold\" >Gemini</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-320.57058115441, -60.58223813131) rotate (-72.8, 400, 470)  \" xlink:href=\"sign_28.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-290.57058115441, 103.58223813131) rotate (-107.8, 400, 470)  \" style=\"font-weight:bold\" >Cancer</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-310.57058115441, 103.58223813131) rotate (-100.8, 400, 470)  \" xlink:href=\"sign_4.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-207.57058115441, 228.58223813131) rotate (-132.8, 400, 470)  \" style=\"font-weight:bold\" >Leo</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-200.57058115441, 258.58223813131) rotate (-132.8, 400, 470)  \" xlink:href=\"sign_5.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(-70.57058115441, 300.58223813131) rotate (-165, 400, 470)  \" style=\"font-weight:bold\">Virgo</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(-60.57058115441, 320.58223813131) rotate (-165, 400, 470)  \" xlink:href=\"sign_6.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(100.57058115441, 293.58223813131) rotate (-195, 400, 470)  \" style=\"font-weight:bold\">Libra</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(110.57058115441, 308.58223813131) rotate (-195, 400, 470)  \" xlink:href=\"sign_7.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(238.57058115441, 195.58223813131) rotate (-225, 400, 470)  \" style=\"font-weight:bold\" >Scorpio</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(253.57058115441, 205.58223813131) rotate (-225, 400, 470)  \" xlink:href=\"sign_8.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(310.57058115441, 45.58223813131) rotate (-255, 400, 470)  \" style=\"font-weight:bold\">Sagittarius</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(315.57058115441, 60.58223813131) rotate (-260, 400, 470)  \" xlink:href=\"sign_9.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(290.57058115441, -114.58223813131) rotate (-284, 400, 470)  \" style=\"font-weight:bold\" >Capricorn</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(305.57058115441, -114.58223813131) rotate (-284, 400, 470)  \" xlink:href=\"sign_16.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(190.57058115441, -243.58223813131) rotate (-318, 400, 470)  \" style=\"font-weight:bold\">Aquarius</text> ";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(205.57058115441, -250.58223813131) rotate (-318, 400, 470)  \" xlink:href=\"sign_27.svg\" ></image>";
+//$zodiac_symbols .="<text xmlns=\"http://www.w3.org/2000/svg\" x=\"400\" y=\"470\" class=\"\" transform=\"translate(65.57058115441, -305.58223813131) rotate (-343, 400, 470)  \" style=\"font-weight:bold\">Pisces</text>";
+$zodiac_symbols .= "<image x=\"400\" y=\"470\" width=\"60\" height=\"19\" class=\"\" transform=\"translate(50.57058115441, -320.58223813131) rotate (-347, 400, 470)  \" xlink:href=\"sign_12.svg\" ></image>";
 
 ?> 
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="1050">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="1050" >
 <title>Radix</title> 
 <desc>Aktuelle Planetenpositionen</desc>
 <style type="text/css" >
@@ -876,8 +917,10 @@ echo "<g transform=\" translate(-60,-100) rotate(". ($drehung) .", 400,470) \">"
 
 
 <!-- circle -->
-<circle cx="400" cy="470" r="330" stroke="black" stroke-width="1" fill="#E8F8FA" />
-
+<circle cx="400" cy="470" r="331.7" stroke="black" stroke-width="1" fill="white" />
+<?php
+echo $backgroundscale;
+?>
 
 <!-- scales -->
 <?php
